@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page1">
+        <h1>X axis<br><span id="one"></span></h1>
+        <h1>Y axis<br><span id="two"></span></h1>
+    </div>
+    <script>
+         if (window.DeviceMotionEvent == undefined) {
+        //No accelerometer is present. Use buttons. 
+        alert("no accelerometer");
+    }
+    else {
+        alert("accelerometer found");
+        window.addEventListener("devicemotion", accelerometerUpdate, true);
+    }
+    function accelerometerUpdate(e) {
+        var aX = event.accelerationIncludingGravity.x*1;
+        var aY = event.accelerationIncludingGravity.y*1;
+        var aZ = event.accelerationIncludingGravity.z*1;
+        //The following two lines are just to calculate a
+        // tilt. Not really needed. 
+        xPosition = Math.atan2(aY, aZ);
+        yPosition = Math.atan2(aX, aZ);
+        console.log("ac"+aX)
+        }
+        var sp1=document.getElementById('one')
+        sp1.innerHTML=accelerometerUpdate.aX
+        var sp2=document.getElementById('two')
+        sp2.innerHTML=accelerometerUpdate.aY
+    </script>
+</body>
+</html>
